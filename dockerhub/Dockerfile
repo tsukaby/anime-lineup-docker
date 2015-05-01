@@ -4,6 +4,13 @@ MAINTAINER tsukaby
 
 RUN apt-get update
 
+# PhantomJS
+ENV PHANTOM_VERSION 1.9.8
+WORKDIR /tmp
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOM_VERSION-linux-x86_64.tar.bz2
+RUN bzip2 -dc phantomjs-$PHANTOM_VERSION-linux-x86_64.tar.bz2 | tar xvf -
+RUN mv phantomjs-$PHANTOM_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin/
+
 # Copy application
 RUN mkdir /usr/local/anime-lineup
 ENV APP_SHA1 dafa30dfd12cd97935cf2c2280050a45a906ee02
