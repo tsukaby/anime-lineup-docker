@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java8
+FROM java:8
 
 MAINTAINER tsukaby
 
@@ -11,6 +11,17 @@ WORKDIR /tmp
 RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOM_VERSION-linux-x86_64.tar.bz2
 RUN bzip2 -dc phantomjs-$PHANTOM_VERSION-linux-x86_64.tar.bz2 | tar xvf -
 RUN mv phantomjs-$PHANTOM_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin/
+
+# Reconfig
+## Locale
+RUN apt-get -y install locales
+RUN sed -i -e "s/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/g" /etc/locale.gen
+RUN locale-gen
+RUN update-locale LANG=ja_JP.UTF-8
+
+## TimeZone
+RUN echo "Asia/Tokyo" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Copy application
 RUN mkdir /usr/local/anime-lineup
