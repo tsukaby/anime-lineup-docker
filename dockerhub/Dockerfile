@@ -5,6 +5,7 @@ MAINTAINER tsukaby
 RUN apt-get update
 
 # PhantomJS
+RUN apt-get -y install libfontconfig
 ENV PHANTOM_VERSION 1.9.8
 WORKDIR /tmp
 RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOM_VERSION-linux-x86_64.tar.bz2
