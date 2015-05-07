@@ -27,7 +27,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Copy application
 RUN mkdir /usr/local/anime-lineup
-ENV APP_SHA1 dafa30dfd12cd97935cf2c2280050a45a906ee02
+ENV APP_SHA1 d62a74f85eff1aabb247afa9efbfc6d80e2f974f
 RUN wget https://s3-ap-northeast-1.amazonaws.com/anime-lineup/binary/anime-lineup-${APP_SHA1}.jar -O /usr/local/anime-lineup/anime-lineup.jar
 
 WORKDIR /usr/local/anime-lineup
